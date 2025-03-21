@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -64,22 +63,27 @@ const services = [
 
 const Services = () => {
   useEffect(() => {
-    // Scroll to top when component mounts
     window.scrollTo(0, 0);
-    // Update document title
     document.title = "Our Services - Cabitopia";
   }, []);
+
+  const serviceColors = [
+    'bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400',
+    'bg-gradient-to-r from-purple-400 via-purple-500 to-pink-400',
+    'bg-gradient-to-r from-green-400 via-green-500 to-teal-400',
+    'bg-gradient-to-r from-orange-400 via-orange-500 to-yellow-400'
+  ];
 
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow pt-24">
         {/* Hero Section */}
-        <section className="bg-cab-50 py-16 md:py-24">
+        <section className="bg-gradient-to-r from-blue-500 via-blue-600 to-cyan-500 py-16 md:py-24 animate-gradient-x">
           <Container>
             <AnimatedSection className="text-center max-w-3xl mx-auto">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Premium Services</h1>
-              <p className="text-lg text-muted-foreground">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Our Premium Services</h1>
+              <p className="text-lg text-white/80">
                 Discover our range of premium transportation services designed to meet your every need with exceptional comfort and reliability.
               </p>
             </AnimatedSection>
@@ -91,30 +95,35 @@ const Services = () => {
           <Container>
             <div className="space-y-20">
               {services.map((service, index) => (
-                <ServiceCard
+                <div 
                   key={service.id}
-                  title={service.title}
-                  description={service.description}
-                  image={service.image}
-                  features={service.features}
-                  reversed={index % 2 !== 0}
-                />
+                  className={`${serviceColors[index % serviceColors.length]} rounded-xl p-1 animate-gradient-x`}
+                >
+                  <ServiceCard
+                    title={service.title}
+                    description={service.description}
+                    image={service.image}
+                    features={service.features}
+                    reversed={index % 2 !== 0}
+                    className="bg-white/90 backdrop-blur-sm"
+                  />
+                </div>
               ))}
             </div>
           </Container>
         </section>
 
         {/* CTA Section */}
-        <section className="bg-primary/5 py-16">
+        <section className="bg-gradient-to-r from-blue-500 via-blue-600 to-cyan-500 py-16 animate-gradient-x">
           <Container>
             <AnimatedSection className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold mb-6">Ready to Experience Our Service?</h2>
-              <p className="text-muted-foreground mb-8">
+              <h2 className="text-3xl font-bold mb-6 text-white">Ready to Experience Our Service?</h2>
+              <p className="text-white/80 mb-8">
                 Book your premium cab service now and enjoy a comfortable, reliable journey to your destination.
               </p>
               <Link
                 to="/booking"
-                className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-medium transition-all duration-300 shadow-md inline-block"
+                className="bg-white text-blue-600 px-8 py-3 rounded-lg font-medium transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 inline-block"
               >
                 Book Now
               </Link>
